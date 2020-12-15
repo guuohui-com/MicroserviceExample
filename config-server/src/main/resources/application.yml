@@ -1,0 +1,23 @@
+server:
+  port: 9001
+
+spring:
+  application:
+    name: config-server
+  #git配置
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/guohuidy/config-server
+          username: 15033130768
+          password: family52113141
+          #超时时间
+          timeout: 4
+          #默认分支
+          default-label: master
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8760/eureka
+
