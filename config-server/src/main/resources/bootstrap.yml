@@ -4,6 +4,11 @@ server:
 spring:
   application:
     name: config-server
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
   #git配置
   cloud:
     config:
@@ -20,4 +25,11 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8760/eureka
+
+#暴露全部监控信息actuor
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "bus-refresh"
 

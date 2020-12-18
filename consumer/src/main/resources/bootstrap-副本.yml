@@ -1,0 +1,79 @@
+#注册中心地址
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8760/eureka
+
+#服务名称
+spring:
+  application:
+    name: consumer-service
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  #配置中心
+  cloud:
+    config:
+      #后缀
+      profile: dev
+      label: master
+      #通过ip直接访问配置中心
+      #      uri: http://localhost:9001/
+      #通过eurka访问配置中心
+      discovery:
+        #配置中心服务
+        service-id: config-server
+        enabled: true
+
+#暴露全部监控信息actuor
+management:
+  endpoint:
+    web:
+      exposure:
+        include: "bus-refresh"
+
+#  #zipkin服务地址
+#  zipkin:
+#    base-url: http://localhost:9411/
+#  #sleuth采样百分比，开发环境可以是1，表示全部，生产环境就用默认1%
+#  sleuth:
+#    sampler:
+#      probability: 1
+#
+#
+#server:
+#  port: 8762
+#
+##productor-service:
+#ribbon:
+#  NFLoadBalancerRuleClassName: com.netflx.loadbalancer.RandomRule
+#
+#
+##修改feign调用超时时间
+#feign:
+#  hystrix:
+#    enabled: true
+#  client:
+#    config:
+#      default:
+#        connectTimeout: 1000
+#        readTimeout: 1000
+#
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 1000
+#
+##暴露全部信息
+#management:
+#  endpoint:
+#    web:
+#      exposure:
+#        include: "*"

@@ -2,11 +2,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+<!--    <parent>-->
+<!--        <groupId>org.springframework.boot</groupId>-->
+<!--        <artifactId>spring-boot-starter-parent</artifactId>-->
+<!--        <version>2.4.0</version>-->
+<!--        <relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
+<!--    </parent>-->
+
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.0</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-parent</artifactId>
+        <version>Hoxton.SR5</version>
+        <relativePath/>
     </parent>
     <groupId>com.css</groupId>
     <artifactId>productor-02</artifactId>
@@ -16,7 +23,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <spring-cloud.version>2020.0.0-M5</spring-cloud.version>
+        <spring-cloud.version>Hoxton.SR5</spring-cloud.version>
     </properties>
 
     <dependencies>
@@ -46,7 +53,11 @@
             <artifactId>spring-cloud-starter-zipkin</artifactId>
             <version>2.1.1.RELEASE</version>
         </dependency>
-
+        <!--配置中心client-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
@@ -54,7 +65,6 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <!--                <version>Dalston.SR2</version>-->
                 <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
