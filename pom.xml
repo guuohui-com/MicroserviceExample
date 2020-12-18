@@ -2,50 +2,61 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-<!--    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.0</version>
-        <relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;
-    </parent>-->
-    <parent>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-starter-parent</artifactId>
-        <version>Hoxton.SR5</version>
-        <relativePath/>
-    </parent>
-    <groupId>com.css.cloud-learn</groupId>
-    <artifactId>productor02</artifactId>
+    <groupId>com.css</groupId>
+    <artifactId>cloud-learn</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-
+    <packaging>pom</packaging>
     <properties>
         <java.version>1.8</java.version>
         <spring-cloud.version>Hoxton.SR5</spring-cloud.version>
+        <spring-boot.version>2.3.0.RELEASE</spring-boot.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-config-server</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-config</artifactId>
-        </dependency>
+        <!--eurkaClient start-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
-
+        <!--eurkaClient end-->
+        <!--单元测试 start-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!--单元测试 end-->
+        <!--web核心组件 start-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!--web核心组件 end-->
     </dependencies>
+
+    <modules>
+        <!--注册中心模块-->
+        <module>eurka-server</module>
+        <!--配置中心模块-->
+        <module>config-server</module>
+        <!--网关层模块-->
+        <module>gateway</module>
+        <!--服务消费者-->
+        <module>consumer</module>
+        <!--服务提供者1模块-->
+        <module>productor</module>
+        <!--服务提供者2模块-->
+        <module>productor-02</module>
+        <!--测试docker镜像模块-->
+        <module>docker-test</module>
+    </modules>
 
     <dependencyManagement>
         <dependencies>
+            <!--cloud-dependencies 版本锁定 start-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
@@ -53,15 +64,34 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!--cloud-dependencies 版本锁定 end-->
+            <!--boot-dependencies 版本锁定 start-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.3.0.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--boot-dependencies 版本锁定 end-->
         </dependencies>
     </dependencyManagement>
-
     <build>
         <plugins>
+            <!--将springboot项目打包插件 start-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
+            <!--将springboot项目打包插件 end-->
         </plugins>
     </build>
 
