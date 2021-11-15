@@ -35,24 +35,8 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <!--web核心组件 end-->
-    </dependencies>
 
-    <modules>
-        <!--注册中心模块-->
-        <module>eurka-server</module>
-        <!--配置中心模块-->
-        <module>config-server</module>
-        <!--网关层模块-->
-        <module>gateway</module>
-        <!--服务消费者-->
-        <module>consumer</module>
-        <!--服务提供者1模块-->
-        <module>productor</module>
-        <!--服务提供者2模块-->
-        <module>productor-02</module>
-        <!--测试docker镜像模块-->
-        <module>docker-test</module>
-    </modules>
+    </dependencies>
 
     <dependencyManagement>
         <dependencies>
@@ -76,6 +60,7 @@
             <!--boot-dependencies 版本锁定 end-->
         </dependencies>
     </dependencyManagement>
+
     <build>
         <plugins>
             <!--将springboot项目打包插件 start-->
@@ -94,6 +79,25 @@
             <!--将springboot项目打包插件 end-->
         </plugins>
     </build>
+
+    <modules>
+        <!--注册中心模块-->
+        <module>eurka-server</module>
+        <!--配置中心模块-->
+        <module>config-server</module>
+        <!--网关层模块 zuul-->
+        <module>gateway-zuul</module>
+        <!--网关层模块 gateway-->
+        <module>gateway-gateway</module>
+        <!--服务消费者-->
+        <module>consumer</module>
+        <!--服务提供者1模块-->
+        <module>productor</module>
+        <!--服务提供者2模块-->
+        <module>productor-02</module>
+        <!--测试docker镜像模块-->
+        <module>docker-test</module>
+    </modules>
 
     <repositories>
         <repository>

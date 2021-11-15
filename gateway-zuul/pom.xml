@@ -8,7 +8,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <groupId>com.css.cloud-learn</groupId>
-    <artifactId>gateway</artifactId>
+    <artifactId>gateway-zuul</artifactId>
     <packaging>jar</packaging>
     <version>0.0.1-SNAPSHOT</version>
 
